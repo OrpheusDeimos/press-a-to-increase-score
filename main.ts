@@ -1,24 +1,5 @@
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    music.baDing.play()
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeScoreBy(1)
-    projectile = sprites.createProjectileFromSide(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f . f . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, 50, 50)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     if (true) {
@@ -49,3 +30,60 @@ mySprite = sprites.create(img`
     `, SpriteKind.Player)
 mySprite.setBounceOnWall(true)
 controller.moveSprite(mySprite)
+sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . b d b . . . . . . 
+    . . . . . . . b d b c . . . . . 
+    . . . . b b c 5 5 5 c b b . . . 
+    . . . . b 5 5 5 1 5 5 5 b . . . 
+    . . . c c 5 5 5 1 5 5 5 c c . . 
+    . . b b 5 5 5 1 1 1 5 5 5 b b . 
+    . . d d 5 1 1 1 1 1 1 1 5 d d . 
+    . . b b 5 5 5 1 1 1 5 5 5 b b . 
+    . . . c c 5 5 5 1 5 5 5 c c . . 
+    . . . . b 5 5 5 1 5 5 5 b . . . 
+    . . . . b b c 5 5 5 c b b . . . 
+    . . . . . . c b d b c . . . . . 
+    . . . . . . . b d b . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food).setStayInScreen(true)
+sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . b d b . . . . . . 
+    . . . . . . . b d b c . . . . . 
+    . . . . b b c 5 5 5 c b b . . . 
+    . . . . b 5 5 5 1 5 5 5 b . . . 
+    . . . c c 5 5 5 1 5 5 5 c c . . 
+    . . b b 5 5 5 1 1 1 5 5 5 b b . 
+    . . d d 5 1 1 1 1 1 1 1 5 d d . 
+    . . b b 5 5 5 1 1 1 5 5 5 b b . 
+    . . . c c 5 5 5 1 5 5 5 c c . . 
+    . . . . b 5 5 5 1 5 5 5 b . . . 
+    . . . . b b c 5 5 5 c b b . . . 
+    . . . . . . c b d b c . . . . . 
+    . . . . . . . b d b . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food).setVelocity(50, 50)
+forever(function () {
+    projectile = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f . f . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, 50, 50)
+    pause(100)
+})
