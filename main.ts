@@ -1,12 +1,35 @@
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     music.baDing.play()
     info.changeScoreBy(1)
+    projectile = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f . f . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, 50, 50)
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    info.changeScoreBy(-1)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    if (true) {
+        mySprite.destroy()
+        game.over(false)
+    }
 })
-scene.setBackgroundColor(8)
-let mySprite = sprites.create(img`
+let projectile: Sprite = null
+let mySprite: Sprite = null
+scene.setBackgroundColor(1)
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . f f f f . . . . . . . 
     . . . f f e e e e f f . . . . . 
@@ -24,4 +47,5 @@ let mySprite = sprites.create(img`
     . f 4 e e f f f f f f e . . . . 
     . . . . . . . . f f f . . . . . 
     `, SpriteKind.Player)
+mySprite.setBounceOnWall(true)
 controller.moveSprite(mySprite)
