@@ -1,5 +1,6 @@
 {
     "name": "Press B to increase score",
+    "version": "0.1.0",
     "description": "",
     "dependencies": {
         "device": "*"
