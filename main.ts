@@ -2,6 +2,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     music.baDing.play()
     info.changeScoreBy(1)
 })
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    info.changeScoreBy(-1)
+})
 scene.setBackgroundColor(8)
 let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
